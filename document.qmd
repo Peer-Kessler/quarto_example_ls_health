@@ -101,6 +101,12 @@ Beispiel: In @fig-beispiel-plot ist ein einfacher Scatterplot mit simulierten Da
 
 Wir sind aber auch relativ frei darin, wie die Referenzen dargestellt werden. Beispielsweise können wir nur auf die Nummer der Graphik verweisen, wenn wir [-@fig-beispiel-plot] schreiben. Oder wir können, wenn wir oben eine Version mit Kleinschreibung festlegen, eine Variante mit Großschreibung forcieren (beispielsweise am Satzanfang) [@Fig-beispiel-plot]. Oder wir legen selbst händisch fest, wie die Graphik referenziert werden soll [Abbildung @fig-beispiel-plot]. In jedem Fall wird ein Link zu der Graphik im Text hinterlegt.
 
+# Zahlen und Statistiken im Text
+
+Zahlen und Statistiken zu kopieren birgt immer die Gefahr von Fehlern. In Quarto können wir Zahlen und Statistiken direkt aus dem R Chunk in den Text einfügen. Dazu müssen wir die Zahl oder Statistik nur in einem R Chunk berechnen und speichern. Anschließend können wir diese Zahl oder Statistik im Text mit r <code> in einfügen. Beispiel:
+
+Im Mittel beobachten wir einen Wert von `r mean(x)` mit einer Standardabweichung von `r sd(x)`. Der minimale Wert beträgt `r min(x)` und der maximale Wert `r max(x)`.
+
 # Literatur
 
 Natürlich können wir auch automatisch Verweise und Literaturverzeichnisse erstellen. In welcher Form zitiert wird, legen wir mit einer `.csl` Datei fest, die für jedes Journal oder jede Zitierweise [hier](https://editor.citationstyles.org/about/) online verfügbar ist. ^[Hier habt ich auch gleich ein Beispiel für einen Hyperlink im Text und eine Fußnote.]. Diese Datei muss oben im YAML Header referenziert werden (und sich entsprechend auch im korrekten Projektordner befinden).
