@@ -1,0 +1,129 @@
+---
+title: "Titel des Artikels"
+format: 
+    docx:
+      reference-doc: custom-reference-doc.docx
+      number-sections: false
+abstract: |
+  Hier schreibt ihr den Abstract rein. 
+  
+  Auch Absätze sind potentiell möglich. Diese werden durch einen "normalen" Absatz erreicht.
+bibliography: bibliography.bib
+csl: apa.csl
+papersize: a4paper
+geometry:
+  - left=2.5cm
+  - right=2.5cm
+  - top=2.5cm
+  - bottom=2cm
+  - includefoot
+crossref:
+  fig-title: Fig.
+  fig-prefix: Fig.
+  title-delim: "."
+---
+
+```{=openxml}
+<w:p><w:r><w:br w:type="page"/></w:r></w:p>
+```
+
+# Introduction
+
+Ich empfehle das Dokument immer mit dem obigen kleinen Code zu schreiben. Dieser erzwingt einen Setenumbruch nach dem Abstact. Dieser Code kann einfach an jede Stelle im Dokument eingefügt werden, an der ein Seitenumbruch gewünscht ist.
+
+Dies ist ein Beispiel für ein Quarto-Dokument, das in ein Word-Dokument (.docx) konvertiert wird. Hier wird einfach bloßer Text übergeben, der später wie durch Magie konvertiert wird. Absätze werden durch eine freie Zeile erreicht.
+
+Ein reiner Absatz genügt nicht, um
+einen neuen Absatz zu beginnen.
+
+## Fett und Kursiv (unterüberschrift)
+
+Ihr könnt Text auch fett und kursiv markieren. Um Text kursiv zu markieren, wird der entsprechende Text zwischen jeweil *einen Stern geschrieben*. Fett gedruckter Text wird durch jeweils **zwei Sterne** erreicht.
+
+### Listen und Aufzählungen
+
+Aufzählungen können sehr einfach in Quarto erstellt werden. Dazu nutzt ihr einfach ein "-" mit einem Leerzeichen dahinter. Eine Unterebene der Stichpunkte werden durch einen Tab eingefügt.
+
+- Erster Punkt
+- Zweiter Punkt
+  - Unterpunkt 1
+  - Unterpunkt 2
+
+Numerierte Listen funktionieren ähnlich, nur dass ihr hier eine Zahl mit einem Punkt und einem Leerzeichen dahinter nutzt.
+
+1. Erster Punkt
+2. Zweiter Punkt
+
+# Codeblöcke
+
+Der große Vorteil von Quarto ist, dass ihr eure Analysen direkt in dem Dokument ausführen und euch in der Worddatei anzeigen lassen könnt. Dazu werden sogenannten R Chunks in das Dokument eingefügt. Das geht entweder über das "+C" Symbol in der Leiste oben oder durch die Tastenkombination CMD+Option+i (Mac) bzw. Strg+Alt+i (Windows).
+
+In Quarto beginnt jeder Chunk mit Eigenschaften des Chunks bzw. wie der Chunk ausgeführt werden soll (siehe README). Bei graphiken oder Tabellen ist wichtig, dass immer ein "label" vergeben wird. Bei Graphiken muss dieses label mit "fig-" beginnen und bei Tabellen mit "tbl-". Das ist wichtig, damit wir im nächsten Schritt Referenzen hierauf einfügen können.
+
+Betrachten wir folgendes Beispiel:
+
+```{r}
+#| label: fig-beispiel-plot
+#| fig-cap: "Beispiel für einen Scatterplot"
+#| fig-width: 6
+#| fig-height: 4
+#| fig-format: pdf
+#| echo: false
+#| message: false
+#| warning: false
+#| dpi: 600
+
+
+x <- rnorm(n = 100,
+           mean = 100,
+           sd = 15
+           )
+
+y <- x + rnorm(n = 100,
+               mean = 0,
+               sd = 10
+               )
+
+plot(x, y)
+```
+
+Wir haben in dem Chunk folgende Dinge festgelegt: Unser Label "#| label:" haben wir so festgelegt, dass wir später auf die Graphik referenzieren können. Wir haben außerdem eine Caption festgelegt ("#| fig-cap:"), die Höhe und Breite (in inches) festgelegt, dass die Graphik im pdf Format eingefügt werden soll (Vektorgraphik), dass wir keinen Code ("#| echo: false") oder Nachrichten oder Warnungen ausgegeben haben möchten, und final die Auflösung der Graphik in dpi.
+
+# Tabellen
+
+Tabellen sind in Quarto sehr ätzend. Bisher habe ich noch keine wirklich gute Lösung gefunden, Tabellen in Dokumente einzufügen, ohne dass das Dateiformat grundlegend geändert wird. Dieses Dokument wird geupdated sobald ich eine gute Lösung gefunden habe.
+
+# Referenzen auf Abbildungen und Tabellen
+
+Ihr könnt in Quarto sehr einfach auf Abbildungen und Tabellen referenzieren. Dazu nutzt ihr die Labels, die ihr den Chunks gegeben habt. Um auf eine Abbildung zu referenzieren, nutzt ihr den Befehl `@fig-<label>`, um auf eine Tabelle zu referenzieren nutzt ihr `@tbl-<label>`.
+
+Beispiel: In @fig-beispiel-plot ist ein einfacher Scatterplot mit simulierten Daten dargestellt. Wie Graphiken referenziert werden, wird über den Yaml Header festgelegt.
+
+Wir sind aber auch relativ frei darin, wie die Referenzen dargestellt werden. Beispielsweise können wir nur auf die Nummer der Graphik verweisen, wenn wir [-@fig-beispiel-plot] schreiben. Oder wir können, wenn wir oben eine Version mit Kleinschreibung festlegen, eine Variante mit Großschreibung forcieren (beispielsweise am Satzanfang) [@Fig-beispiel-plot]. Oder wir legen selbst händisch fest, wie die Graphik referenziert werden soll [Abbildung @fig-beispiel-plot]. In jedem Fall wird ein Link zu der Graphik im Text hinterlegt.
+
+# Literatur
+
+Natürlich können wir auch automatisch Verweise und Literaturverzeichnisse erstellen. In welcher Form zitiert wird, legen wir mit einer `.csl` Datei fest, die für jedes Journal oder jede Zitierweise [hier](https://editor.citationstyles.org/about/) online verfügbar ist. ^[Hier habt ich auch gleich ein Beispiel für einen Hyperlink im Text und eine Fußnote.]. Diese Datei muss oben im YAML Header referenziert werden (und sich entsprechend auch im korrekten Projektordner befinden).
+
+Die Literaturdatenbak wird dann über eine `.bib` Datei eingebunden, die ebenfalls im YAML Header referenziert werden muss. Diese Datei kann entweder manuell erstellt werden (was ich nicht empfehlen würde) oder über Literaturverwaltungsprogramme wie Zotero, Mendeley oder Citavi exportiert werden.
+
+Jeder Eintrag hat dabei einen Identifikator. Bei Zotero ist das standardmäßig der erste Autor, das erste Wort des Titels und das Jahr der Veröffentlichung getrennt mit "_" (z.B. "musterautor_incredible_2020"). Im Zweifel muss man in die bib-Datei schauen. Um Verweise in der Form `(Autor*in, Jahr)` einzufügen kann nun der Identifikator in eckigen Klammern eingefügt werden. Mehrere Verweise werden durch Semikolon getrennt. Verweise in der Form `Autor*in (Jahr)` werden einfach ohne eckige Klammern eingefügt.
+
+Empirische Studien haben bereits gezeigt, dass ... [@fallucchi_fair_2021]. Andere Autoren zeigen wieder, dass ... [@hofstede_value_1979; @veatch_transplantation_2015]. @christensen_cumulative_2019 argumentiert dabei, dass vor allem ... Modelle zur analyse genutzt werden sollten.
+
+Das Literaturverzeichnis wird dann als eigener Abschnitt am Ende des Dokuments automatisch eingefügt. Besser ist es aber, den Abschnitt selber einzufügen und die Position selbst zu bestimmen. Das ist vor allem dann hilfreich, wenn das Journal alle Graphiken am Ende des Dokumentes haben will. Das funktiert wie folgt:
+
+```{=openxml}
+<w:p><w:r><w:br w:type="page"/></w:r></w:p>
+```
+
+# Literaturverzeichnis
+
+::: {#refs}
+:::
+
+# Letzte Hinweise
+
+In Quarto ist allerhand noch zusätzlich möglich. Die Anpassungsmöglichkeiten sind praktisch unbegrenzt. Das macht es auf der einen Seite sehr anwendungfreundlich und auf der anderen Seite wieder sehr unpraktisch. Die Dokumentation auf der (Quarto Website)[https://quarto.org] ist manchmal sehr hilfreich und manchmal nicht. Im Zweifel hilft euch aber KI (Empfehlung: claude.ai) immer weiter.
+
+Viel Spaß beim Ausprobieren und Coden :-)
