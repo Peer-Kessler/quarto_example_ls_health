@@ -3,6 +3,11 @@
 Dieses Projekt enthält ein Beispielprojekt für das Erstellen Research Papern
 und das Exportieren in Word.
 
+## Allgemeines
+
+Das gesamte R Project kann über `Code` -> `Download ZIP` heruntergeladen werden. Damit
+die Verweise auf die Dateien auch direkt funktioniert, muss RStudio immer über die `.Rproj` Datei geöffnet werden.
+
 ## Yaml Header
 
 Ganz oben im Dokument befindet sich der Yaml Header. Hier werden die
