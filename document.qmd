@@ -104,7 +104,7 @@ Wir sind aber auch relativ frei darin, wie die Referenzen dargestellt werden. Be
 
 Zahlen und Statistiken zu kopieren birgt immer die Gefahr von Fehlern. In Quarto können wir Zahlen und Statistiken direkt aus dem R Chunk in den Text einfügen. Dazu müssen wir die Zahl oder Statistik nur in einem R Chunk berechnen und speichern. Anschließend können wir diese Zahl oder Statistik im Text mit r <code> in einfügen. Beispiel:
 
-Im Mittel beobachten wir einen Wert von `r mean(x)` mit einer Standardabweichung von `r sd(x)`. Der minimale Wert beträgt `r min(x)` und der maximale Wert `r max(x)`.
+Im Mittel beobachten wir einen Wert von `r round(mean(x),2)` mit einer Standardabweichung von `r sd(x)`. Der minimale Wert beträgt `r min(x)` und der maximale Wert `r max(x)`.
 
 # Literatur
 
