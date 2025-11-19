@@ -19,7 +19,7 @@ dann funktioniert der Export nicht!
 
 ## Word-Formatierung
 
-In der Datei `word-style-reference.docx` sind die Formatvorlagen für das Ziel-
+In der Datei `custom-reference-doc.docx` sind die Formatvorlagen für das Ziel-
 Word-Dokument hinterlegt. Wenn die allgemeine Formatierung geändert werden soll, 
 dann werden die entsprechenden Formatvorlagen in dieser Datei angepasst.
 
