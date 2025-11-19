@@ -73,7 +73,6 @@ Betrachten wir folgendes Beispiel:
 #| warning: false
 #| dpi: 600
 
-
 x <- rnorm(n = 100,
            mean = 100,
            sd = 15
