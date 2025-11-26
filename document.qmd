@@ -67,7 +67,7 @@ Betrachten wir folgendes Beispiel:
 #| fig-cap: "Beispiel für einen Scatterplot"
 #| fig-width: 6
 #| fig-height: 4
-#| fig-format: pdf
+#| fig-format: pdf # manche Wordversionen unterstützen nicht pdf, aber svg graphiken; dann einfach ändern
 #| echo: false
 #| message: false
 #| warning: false
